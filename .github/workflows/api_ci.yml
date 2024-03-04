@@ -11,8 +11,7 @@ defaults:
 
 jobs:
   unit-test:
-  run-on:
-    - ubuntu-latest
+  run-on: ubuntu-latest
   steps:
     - name: checkout
       uses: actions/checkout@v4
