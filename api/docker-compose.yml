@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: a123121
+    ports:
+      - 27017:27017
+
+  mongo_e2e:
+    image: mongo:4.4
+    container_name: mongo_e2e
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: test123
+    ports:
+     - 27027:27027
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 'a123121'
+      ME_CONFIG_MONGODB_URL: 'mongodb://root:a123121@mongo:27017/'
+    depends_on:
+      - mongo
